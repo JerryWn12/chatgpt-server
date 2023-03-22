@@ -66,7 +66,7 @@ output
 
 ## Request
 
-```json
+```text
 {
     "id": "" // Optional, the converastion id to use
     "message": "" // message send to chatgpt
@@ -75,7 +75,7 @@ output
 
 ## Response
 
-```json
+```text
 {
     "id": "" // the convesation id in this message
     "message": "" // the chatgpt's reply message
