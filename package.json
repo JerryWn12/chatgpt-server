@@ -15,6 +15,7 @@
     "openai",
     "chatgpt"
   ],
+  "repository": "github:JerryWn12/chatgpt-server",
   "author": "JerryWn",
   "license": "MIT",
   "dependencies": {
