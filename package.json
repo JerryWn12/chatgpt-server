@@ -1,6 +1,6 @@
 {
   "name": "@jerrywn/chatgpt-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "A chatgpt server by express framework",
   "main": "src/main.js",
