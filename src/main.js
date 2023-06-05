@@ -1,14 +1,19 @@
 #!/usr/bin/env node
 
-import ChatGPT from "@jerrywn/chatgpt-api"
+import ChatGPT from "../../chatgpt-api/src/main.js"
 import express from "express"
 
-const keyParam = process.argv.find(value => value.startsWith("--key="))
+args = process.argv.slice(2)
+
+const keyParam = args.find(value => value.startsWith("--key="))
 const { 1: key } = keyParam.split("=")
+
+const enableCache = args.some(value => value === "--cache")
 
 const server = new express()
 const client = new ChatGPT({
   openaiApiKey: key,
+  enableCache,
 })
 
 server.use(express.json())
@@ -20,7 +25,11 @@ server.post("/", async (req, res) => {
     client.useConversation(req.body.id)
     conversationId = req.body.id
   } else {
-    conversationId = client.newConversation()
+    if (req.body.prompt) {
+      client.newConversationWithCustomPrompt(req.body.prompt)
+    } else {
+      client.newConversation()
+    }
   }
 
   const responseMessage = await client.sendMessage(req.body.message)

@@ -8,8 +8,7 @@
     "chatgpt-server": "src/main.js"
   },
   "scripts": {
-    "start": "node src/main.js",
-    "test": "node src/test.js"
+    "start": "node src/main.js"
   },
   "keywords": [
     "openai",
