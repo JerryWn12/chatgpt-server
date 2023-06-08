@@ -22,7 +22,7 @@ const response02 = await fetch("http://localhost:3000", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    message: "where are you from?",
+    message: "Where are you from?",
   }),
 })
 
@@ -35,13 +35,13 @@ const response03 = await fetch("http://localhost:3000", {
   },
   body: JSON.stringify({
     id,
-    message: "whats my previous question",
+    message: "What's my previous question",
   }),
 })
 console.log(await response03.json())
 ```
 
-output
+Output
 
 ```text
 {
@@ -69,7 +69,8 @@ output
 ```text
 {
     "id": "" // Optional, the converastion id to use
-    "message": "" // message send to chatgpt
+    "message": "" // Message send to ChatGPT
+    "prompt": "" // Optional, set custom prompt for ChatGPT
 }
 ```
 
@@ -77,7 +78,7 @@ output
 
 ```text
 {
-    "id": "" // the convesation id in this message
-    "message": "" // the chatgpt's reply message
+    "id": "" // Convesation id in this message
+    "message": "" // ChatGPT's reply message
 }
 ```
