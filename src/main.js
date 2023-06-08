@@ -5,14 +5,24 @@ import express from "express"
 
 const args = process.argv
 
-const key = args.find(value => value.startsWith("--api-key=")).split("=")[1]
+if (args.some(value => value === "--help")) {
+  showHelp()
+  process.exit(0)
+}
 
-const enableCache = args.some(value => value === "--cache")
+const key =
+  process.env["OPENAI_API_KEY"] ||
+  args.find(value => value.startsWith("--api-key=")).split("=")[1]
+
+if (!key) {
+  console.log("please provide openai api key")
+  showHelp()
+  process.exit(1)
+}
 
 const server = new express()
 const client = new ChatGPT({
   openaiApiKey: key,
-  enableCache,
 })
 
 server.use(express.json())
@@ -21,13 +31,13 @@ server.post("/", async (req, res) => {
   let conversationId
 
   if (req.body.id) {
-    client.useConversation(req.body.id)
     conversationId = req.body.id
+    client.useConversation(conversationId)
   } else {
     if (req.body.prompt) {
-      client.newConversationWithCustomPrompt(req.body.prompt)
+      conversationId = client.newConversationWithCustomPrompt(req.body.prompt)
     } else {
-      client.newConversation()
+      conversationId = client.newConversation()
     }
   }
 
@@ -42,6 +52,17 @@ server.post("/", async (req, res) => {
   })
   res.send(responseBody)
 })
+
+function showHelp() {
+  console.log(`
+  usage: chatgpt-server [options]
+
+  options:
+    --api-key=<OPENAI_API_KEY>  set openai api key
+    --cache                     enable cache
+    --help                      show help
+  `)
+}
 
 server.listen(3000, () => {
   console.log("server started listen at 3000")

@@ -18,7 +18,7 @@
   "author": "JerryWn",
   "license": "MIT",
   "dependencies": {
-    "@jerrywn/chatgpt-api": "^1.0.4",
+    "@jerrywn/chatgpt-api": "^1.0.5",
     "express": "^4.18.2"
   }
 }
