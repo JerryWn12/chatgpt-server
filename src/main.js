@@ -3,10 +3,9 @@
 import ChatGPT from "../../chatgpt-api/src/main.js"
 import express from "express"
 
-args = process.argv.slice(2)
+const args = process.argv
 
-const keyParam = args.find(value => value.startsWith("--key="))
-const { 1: key } = keyParam.split("=")
+const key = args.find(value => value.startsWith("--api-key=")).split("=")[1]
 
 const enableCache = args.some(value => value === "--cache")
 
