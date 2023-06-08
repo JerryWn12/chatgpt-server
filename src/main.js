@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import ChatGPT from "../../chatgpt-api/src/main.js"
+import ChatGPT from "@jerrywn/chatgpt-api"
 import express from "express"
 
 const args = process.argv
