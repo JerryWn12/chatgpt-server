@@ -62,7 +62,7 @@ output
 
 `npm install @jerrywn/chatgpt-server -g`
 
-`chatgpt-server --key=<OPENAI_API_KEY>`
+`chatgpt-server --api-key=<OPENAI_API_KEY>`
 
 ## Request
 
